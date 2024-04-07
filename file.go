@@ -75,7 +75,11 @@ func (f *File) SaveAs(name string, opts ...Options) error {
 	if _, ok := supportedContentTypes[strings.ToLower(filepath.Ext(f.Path))]; !ok {
 		return ErrWorkbookFileFormat
 	}
-	file, err := os.OpenFile(filepath.Clean(name), os.O_WRONLY|os.O_TRUNC|os.O_CREATE, os.ModePerm)
+	fileMode := os.ModePerm
+	if len(opts) != 0 && opts[0].CustomFileMode != 0 {
+		fileMode = opts[0].CustomFileMode
+	}
+	file, err := os.OpenFile(filepath.Clean(name), os.O_WRONLY|os.O_TRUNC|os.O_CREATE, fileMode)
 	if err != nil {
 		return err
 	}

@@ -17,6 +17,7 @@ import (
 	"bytes"
 	"encoding/xml"
 	"io"
+	"io/fs"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -106,6 +107,7 @@ type Options struct {
 	ShortDatePattern  string
 	LongDatePattern   string
 	LongTimePattern   string
+	CustomFileMode    fs.FileMode
 	CultureInfo       CultureName
 }
 
