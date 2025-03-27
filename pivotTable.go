@@ -87,6 +87,7 @@ type PivotTableField struct {
 	Outline         bool
 	Subtotal        string
 	DefaultSubtotal bool
+	SortType        string
 }
 
 // AddPivotTable provides the method to add pivot table by given pivot table
@@ -543,6 +544,7 @@ func (f *File) addPivotFields(pt *xlsxPivotTableDefinition, opts *PivotTableOpti
 				Compact:         &rowOptions.Compact,
 				Outline:         &rowOptions.Outline,
 				DefaultSubtotal: &rowOptions.DefaultSubtotal,
+				SortType:        rowOptions.SortType,
 				Items: &xlsxItems{
 					Count: len(items),
 					Item:  items,
